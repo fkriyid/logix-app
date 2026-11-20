@@ -8,8 +8,8 @@ import { formatIDRCompact, formatPct, formatNumber } from '../utils/format';
 import { Truck } from 'lucide-react';
 
 const TOOLTIP = {
-  contentStyle: { background: '#1c2128', border: '1px solid #30363d', borderRadius: 6 },
-  labelStyle: { color: '#e6edf3' },
+  contentStyle: { background: 'rgba(255,255,255,0.9)', border: '1px solid rgba(147,197,253,0.55)', borderRadius: 14, boxShadow: '0 12px 30px rgba(37,99,235,0.16)', backdropFilter: 'blur(14px)' },
+  labelStyle: { color: '#0f172a', fontWeight: 700 },
 };
 
 export default function Carriers() {
@@ -101,20 +101,20 @@ export default function Carriers() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <ChartCard title="OTD % by Carrier" height={180}>
             <BarChart data={enriched} layout="vertical" margin={{ left: 100, right: 8, top: 4, bottom: 4 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-              <XAxis type="number" domain={[0, 100]} tick={{ fill: '#8b949e', fontSize: 11 }} tickFormatter={v => `${v}%`} />
-              <YAxis type="category" dataKey="carrier" tick={{ fill: '#8b949e', fontSize: 10 }} width={100} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(71,85,105,0.2)" />
+              <XAxis type="number" domain={[0, 100]} tick={{ fill: '#475569', fontSize: 11 }} tickFormatter={v => `${v}%`} />
+              <YAxis type="category" dataKey="carrier" tick={{ fill: '#475569', fontSize: 10 }} width={100} />
               <Tooltip {...TOOLTIP} formatter={v => [`${v.toFixed(1)}%`, 'OTD']} />
-              <Bar dataKey="otdPct" fill="#2f81f7" radius={[0, 3, 3, 0]} />
+              <Bar dataKey="otdPct" fill="#2563eb" radius={[0, 6, 6, 0]} />
             </BarChart>
           </ChartCard>
           <ChartCard title="Total Cost by Carrier" height={180}>
             <BarChart data={enriched} layout="vertical" margin={{ left: 100, right: 8, top: 4, bottom: 4 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-              <XAxis type="number" tick={{ fill: '#8b949e', fontSize: 11 }} tickFormatter={v => `${(v / 1e9).toFixed(1)}B`} />
-              <YAxis type="category" dataKey="carrier" tick={{ fill: '#8b949e', fontSize: 10 }} width={100} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(71,85,105,0.2)" />
+              <XAxis type="number" tick={{ fill: '#475569', fontSize: 11 }} tickFormatter={v => `${(v / 1e9).toFixed(1)}B`} />
+              <YAxis type="category" dataKey="carrier" tick={{ fill: '#475569', fontSize: 10 }} width={100} />
               <Tooltip {...TOOLTIP} formatter={v => [formatIDRCompact(v), 'Cost']} />
-              <Bar dataKey="totalCost" fill="#2dd4bf" radius={[0, 3, 3, 0]} />
+              <Bar dataKey="totalCost" fill="#0f766e" radius={[0, 6, 6, 0]} />
             </BarChart>
           </ChartCard>
         </div>
@@ -147,9 +147,9 @@ export default function Carriers() {
               </div>
               <ChartCard title="Performance Radar" height={220}>
                 <RadarChart data={radarData} cx="50%" cy="50%" outerRadius={80}>
-                  <PolarGrid stroke="#30363d" />
-                  <PolarAngleAxis dataKey="subject" tick={{ fill: '#8b949e', fontSize: 11 }} />
-                  <Radar dataKey="value" stroke="#2f81f7" fill="#2f81f7" fillOpacity={0.3} />
+                  <PolarGrid stroke="rgba(71,85,105,0.2)" />
+                  <PolarAngleAxis dataKey="subject" tick={{ fill: '#475569', fontSize: 11 }} />
+                  <Radar dataKey="value" stroke="#2563eb" fill="#60a5fa" fillOpacity={0.3} />
                 </RadarChart>
               </ChartCard>
             </div>

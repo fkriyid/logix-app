@@ -13,9 +13,9 @@ import { formatPct, formatDays } from '../utils/format';
 import { TrendingUp, TrendingDown, Clock, CheckCircle } from 'lucide-react';
 
 const TOOLTIP = {
-  contentStyle: { background: '#1c2128', border: '1px solid #30363d', borderRadius: 6 },
-  labelStyle: { color: '#e6edf3' },
-  itemStyle: { color: '#8b949e' },
+  contentStyle: { background: 'rgba(255,255,255,0.9)', border: '1px solid rgba(147,197,253,0.55)', borderRadius: 14, boxShadow: '0 12px 30px rgba(37,99,235,0.16)', backdropFilter: 'blur(14px)' },
+  labelStyle: { color: '#0f172a', fontWeight: 700 },
+  itemStyle: { color: '#475569' },
 };
 
 export default function DeliveryAnalytics() {
@@ -94,21 +94,21 @@ export default function DeliveryAnalytics() {
       <div className="grid-2 mb-20">
         <ChartCard title="Monthly OTD Trend">
           <LineChart data={monthlyOTD} margin={{ top: 4, right: 8, left: 0, bottom: 20 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-            <XAxis dataKey="month" tick={{ fill: '#8b949e', fontSize: 10 }} angle={-30} textAnchor="end" />
-            <YAxis domain={[0, 100]} tick={{ fill: '#8b949e', fontSize: 11 }} tickFormatter={v => `${v}%`} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(71,85,105,0.2)" />
+            <XAxis dataKey="month" tick={{ fill: '#475569', fontSize: 10 }} angle={-30} textAnchor="end" />
+            <YAxis domain={[0, 100]} tick={{ fill: '#475569', fontSize: 11 }} tickFormatter={v => `${v}%`} />
             <Tooltip {...TOOLTIP} formatter={v => [`${v.toFixed(1)}%`, 'OTD']} />
-            <Line type="monotone" dataKey="otdPct" stroke="#3fb950" strokeWidth={2} dot={{ r: 3 }} name="OTD %" />
+            <Line type="monotone" dataKey="otdPct" stroke="#059669" strokeWidth={2} dot={{ r: 3 }} name="OTD %" />
           </LineChart>
         </ChartCard>
 
         <ChartCard title="Lead Time Distribution">
           <BarChart data={leadDist} margin={{ top: 4, right: 8, left: 0, bottom: 4 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-            <XAxis dataKey="name" tick={{ fill: '#8b949e', fontSize: 11 }} />
-            <YAxis tick={{ fill: '#8b949e', fontSize: 11 }} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(71,85,105,0.2)" />
+            <XAxis dataKey="name" tick={{ fill: '#475569', fontSize: 11 }} />
+            <YAxis tick={{ fill: '#475569', fontSize: 11 }} />
             <Tooltip {...TOOLTIP} />
-            <Bar dataKey="count" fill="#2dd4bf" radius={[3, 3, 0, 0]} name="Shipments" />
+            <Bar dataKey="count" fill="#0f766e" radius={[6, 6, 0, 0]} name="Shipments" />
           </BarChart>
         </ChartCard>
       </div>
@@ -116,21 +116,21 @@ export default function DeliveryAnalytics() {
       <div className="grid-2 mb-20">
         <ChartCard title="OTD % by Carrier">
           <BarChart data={byCarrier} layout="vertical" margin={{ left: 110, right: 8, top: 4, bottom: 4 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-            <XAxis type="number" domain={[0, 100]} tick={{ fill: '#8b949e', fontSize: 11 }} tickFormatter={v => `${v}%`} />
-            <YAxis type="category" dataKey="carrier" tick={{ fill: '#8b949e', fontSize: 10 }} width={110} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(71,85,105,0.2)" />
+            <XAxis type="number" domain={[0, 100]} tick={{ fill: '#475569', fontSize: 11 }} tickFormatter={v => `${v}%`} />
+            <YAxis type="category" dataKey="carrier" tick={{ fill: '#475569', fontSize: 10 }} width={110} />
             <Tooltip {...TOOLTIP} formatter={v => [`${v.toFixed(1)}%`, 'OTD']} />
-            <Bar dataKey="otdPct" fill="#2f81f7" radius={[0, 3, 3, 0]} />
+            <Bar dataKey="otdPct" fill="#2563eb" radius={[0, 6, 6, 0]} />
           </BarChart>
         </ChartCard>
 
         <ChartCard title="OTD % by Destination (Top 10)">
           <BarChart data={byDest} layout="vertical" margin={{ left: 90, right: 8, top: 4, bottom: 4 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-            <XAxis type="number" domain={[0, 100]} tick={{ fill: '#8b949e', fontSize: 11 }} tickFormatter={v => `${v}%`} />
-            <YAxis type="category" dataKey="dest" tick={{ fill: '#8b949e', fontSize: 10 }} width={90} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(71,85,105,0.2)" />
+            <XAxis type="number" domain={[0, 100]} tick={{ fill: '#475569', fontSize: 11 }} tickFormatter={v => `${v}%`} />
+            <YAxis type="category" dataKey="dest" tick={{ fill: '#475569', fontSize: 10 }} width={90} />
             <Tooltip {...TOOLTIP} formatter={v => [`${v.toFixed(1)}%`, 'OTD']} />
-            <Bar dataKey="otdPct" fill="#a371f7" radius={[0, 3, 3, 0]} />
+            <Bar dataKey="otdPct" fill="#6366f1" radius={[0, 6, 6, 0]} />
           </BarChart>
         </ChartCard>
       </div>
@@ -138,21 +138,21 @@ export default function DeliveryAnalytics() {
       <div className="grid-2 mb-20">
         <ChartCard title="Delay Rate by Carrier">
           <BarChart data={delayByCarrier} layout="vertical" margin={{ left: 110, right: 8, top: 4, bottom: 4 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-            <XAxis type="number" domain={[0, 100]} tick={{ fill: '#8b949e', fontSize: 11 }} tickFormatter={v => `${v}%`} />
-            <YAxis type="category" dataKey="carrier" tick={{ fill: '#8b949e', fontSize: 10 }} width={110} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(71,85,105,0.2)" />
+            <XAxis type="number" domain={[0, 100]} tick={{ fill: '#475569', fontSize: 11 }} tickFormatter={v => `${v}%`} />
+            <YAxis type="category" dataKey="carrier" tick={{ fill: '#475569', fontSize: 10 }} width={110} />
             <Tooltip {...TOOLTIP} formatter={v => [`${v.toFixed(1)}%`, 'Delay Rate']} />
-            <Bar dataKey="delayPct" fill="#f85149" radius={[0, 3, 3, 0]} />
+            <Bar dataKey="delayPct" fill="#dc2626" radius={[0, 6, 6, 0]} />
           </BarChart>
         </ChartCard>
 
         <ChartCard title="Planned vs Actual Lead Time (days) — sample">
           <ScatterChart margin={{ top: 10, right: 20, left: 0, bottom: 10 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-            <XAxis type="number" dataKey="x" name="Planned" tick={{ fill: '#8b949e', fontSize: 11 }} label={{ value: 'Planned (days)', fill: '#8b949e', fontSize: 10, position: 'insideBottom', offset: -5 }} />
-            <YAxis type="number" dataKey="y" name="Actual" tick={{ fill: '#8b949e', fontSize: 11 }} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(71,85,105,0.2)" />
+            <XAxis type="number" dataKey="x" name="Planned" tick={{ fill: '#475569', fontSize: 11 }} label={{ value: 'Planned (days)', fill: '#475569', fontSize: 10, position: 'insideBottom', offset: -5 }} />
+            <YAxis type="number" dataKey="y" name="Actual" tick={{ fill: '#475569', fontSize: 11 }} />
             <Tooltip cursor={{ strokeDasharray: '3 3' }} {...TOOLTIP} formatter={(v, n) => [v, n === 'x' ? 'Planned days' : 'Actual days']} />
-            <Scatter data={pvA} fill="#2dd4bf" fillOpacity={0.7} />
+            <Scatter data={pvA} fill="#0f766e" fillOpacity={0.7} />
           </ScatterChart>
         </ChartCard>
       </div>

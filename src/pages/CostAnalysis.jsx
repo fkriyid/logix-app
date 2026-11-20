@@ -9,13 +9,13 @@ import {
   filterByDateRange,
 } from '../utils/kpi';
 import { formatIDRCompact, formatIDR } from '../utils/format';
-import { DollarSign, TrendingUp } from 'lucide-react';
+import { AlertTriangle, DollarSign, TrendingUp } from 'lucide-react';
 
-const COLORS = ['#2f81f7', '#2dd4bf', '#3fb950', '#d29922', '#f85149', '#a371f7'];
+const COLORS = ['#2563eb', '#0f766e', '#059669', '#b45309', '#dc2626', '#6366f1'];
 
 const TOOLTIP = {
-  contentStyle: { background: '#1c2128', border: '1px solid #30363d', borderRadius: 6 },
-  labelStyle: { color: '#e6edf3' },
+  contentStyle: { background: 'rgba(255,255,255,0.9)', border: '1px solid rgba(147,197,253,0.55)', borderRadius: 14, boxShadow: '0 12px 30px rgba(37,99,235,0.16)', backdropFilter: 'blur(14px)' },
+  labelStyle: { color: '#0f172a', fontWeight: 700 },
 };
 
 export default function CostAnalysis() {
@@ -84,11 +84,11 @@ export default function CostAnalysis() {
         {/* By Carrier */}
         <ChartCard title="Total Cost by Carrier">
           <BarChart data={byCarrier} layout="vertical" margin={{ left: 110, right: 8, top: 4, bottom: 4 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-            <XAxis type="number" tick={{ fill: '#8b949e', fontSize: 11 }} tickFormatter={v => `${(v / 1e9).toFixed(1)}B`} />
-            <YAxis type="category" dataKey="carrier" tick={{ fill: '#8b949e', fontSize: 10 }} width={110} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(71,85,105,0.2)" />
+            <XAxis type="number" tick={{ fill: '#475569', fontSize: 11 }} tickFormatter={v => `${(v / 1e9).toFixed(1)}B`} />
+            <YAxis type="category" dataKey="carrier" tick={{ fill: '#475569', fontSize: 10 }} width={110} />
             <Tooltip {...TOOLTIP} formatter={v => [formatIDRCompact(v), 'Cost']} />
-            <Bar dataKey="totalCost" fill="#2f81f7" radius={[0, 3, 3, 0]} />
+            <Bar dataKey="totalCost" fill="#2563eb" radius={[0, 6, 6, 0]} />
           </BarChart>
         </ChartCard>
       </div>
@@ -97,29 +97,29 @@ export default function CostAnalysis() {
         {/* By Route */}
         <ChartCard title="Cost by Top Route" height={260}>
           <BarChart data={byRoute} layout="vertical" margin={{ left: 150, right: 8, top: 4, bottom: 4 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-            <XAxis type="number" tick={{ fill: '#8b949e', fontSize: 11 }} tickFormatter={v => `${(v / 1e9).toFixed(1)}B`} />
-            <YAxis type="category" dataKey="route" tick={{ fill: '#8b949e', fontSize: 9 }} width={150} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(71,85,105,0.2)" />
+            <XAxis type="number" tick={{ fill: '#475569', fontSize: 11 }} tickFormatter={v => `${(v / 1e9).toFixed(1)}B`} />
+            <YAxis type="category" dataKey="route" tick={{ fill: '#475569', fontSize: 9 }} width={150} />
             <Tooltip {...TOOLTIP} formatter={v => [formatIDRCompact(v), 'Cost']} />
-            <Bar dataKey="totalCost" fill="#a371f7" radius={[0, 3, 3, 0]} />
+            <Bar dataKey="totalCost" fill="#6366f1" radius={[0, 6, 6, 0]} />
           </BarChart>
         </ChartCard>
 
         {/* Cost/km by vehicle */}
         <ChartCard title="Cost per km by Vehicle Type">
           <BarChart data={byVehicle} margin={{ top: 4, right: 8, left: 0, bottom: 4 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-            <XAxis dataKey="vehicle" tick={{ fill: '#8b949e', fontSize: 11 }} />
-            <YAxis tick={{ fill: '#8b949e', fontSize: 11 }} tickFormatter={v => `${(v / 1000).toFixed(0)}K`} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(71,85,105,0.2)" />
+            <XAxis dataKey="vehicle" tick={{ fill: '#475569', fontSize: 11 }} />
+            <YAxis tick={{ fill: '#475569', fontSize: 11 }} tickFormatter={v => `${(v / 1000).toFixed(0)}K`} />
             <Tooltip {...TOOLTIP} formatter={v => [formatIDRCompact(v), 'Cost/km']} />
-            <Bar dataKey="costPerKm" fill="#3fb950" radius={[3, 3, 0, 0]} />
+            <Bar dataKey="costPerKm" fill="#059669" radius={[6, 6, 0, 0]} />
           </BarChart>
         </ChartCard>
       </div>
 
       {/* What-If Simulator */}
       <div className="simulator-box">
-        <div className="simulator-label">⚠ Simulated — What-If Cost Projector</div>
+        <div className="simulator-label"><AlertTriangle size={13} /> Simulated — What-If Cost Projector</div>
         <p style={{ fontSize: 12, color: 'var(--text-secondary)', marginBottom: 14 }}>
           Uses dataset average cost (Rp {Math.round(avgCost).toLocaleString('id-ID')}/shipment). Results are projections only.
         </p>

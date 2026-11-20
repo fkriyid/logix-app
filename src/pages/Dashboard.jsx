@@ -15,12 +15,12 @@ import {
 } from '../utils/kpi';
 import { formatIDRCompact, formatPct, formatDays, formatDate } from '../utils/format';
 
-const COLORS = ['#2f81f7', '#2dd4bf', '#3fb950', '#d29922', '#f85149', '#a371f7', '#e3b341', '#79c0ff'];
+const COLORS = ['#2563eb', '#0f766e', '#059669', '#b45309', '#dc2626', '#6366f1', '#d97706', '#60a5fa'];
 
 const TOOLTIP_STYLE = {
-  contentStyle: { background: '#1c2128', border: '1px solid #30363d', borderRadius: 6 },
-  labelStyle: { color: '#e6edf3' },
-  itemStyle: { color: '#8b949e' },
+  contentStyle: { background: 'rgba(255,255,255,0.9)', border: '1px solid rgba(147,197,253,0.55)', borderRadius: 14, boxShadow: '0 12px 30px rgba(37,99,235,0.16)', backdropFilter: 'blur(14px)' },
+  labelStyle: { color: '#0f172a', fontWeight: 700 },
+  itemStyle: { color: '#475569' },
 };
 
 export default function Dashboard() {
@@ -84,11 +84,11 @@ export default function Dashboard() {
       <div className="grid-2 mb-20">
         <ChartCard title="Monthly Shipment Volume">
           <BarChart data={monthlyVolume} margin={{ top: 4, right: 8, left: 0, bottom: 20 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-            <XAxis dataKey="month" tick={{ fill: '#8b949e', fontSize: 10 }} angle={-30} textAnchor="end" />
-            <YAxis tick={{ fill: '#8b949e', fontSize: 11 }} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.2)" />
+            <XAxis dataKey="month" tick={{ fill: '#64748b', fontSize: 10 }} angle={-30} textAnchor="end" />
+            <YAxis tick={{ fill: '#64748b', fontSize: 11 }} />
             <Tooltip {...TOOLTIP_STYLE} />
-            <Bar dataKey="count" fill="#2f81f7" radius={[3, 3, 0, 0]} name="Shipments" />
+            <Bar dataKey="count" fill="#2563eb" radius={[6, 6, 0, 0]} name="Shipments" />
           </BarChart>
         </ChartCard>
 
@@ -106,21 +106,21 @@ export default function Dashboard() {
       <div className="grid-2 mb-20">
         <ChartCard title="Monthly Logistics Cost">
           <LineChart data={monthlyCost} margin={{ top: 4, right: 8, left: 0, bottom: 20 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-            <XAxis dataKey="month" tick={{ fill: '#8b949e', fontSize: 10 }} angle={-30} textAnchor="end" />
-            <YAxis tick={{ fill: '#8b949e', fontSize: 11 }} tickFormatter={v => `${(v / 1e9).toFixed(1)}B`} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.2)" />
+            <XAxis dataKey="month" tick={{ fill: '#64748b', fontSize: 10 }} angle={-30} textAnchor="end" />
+            <YAxis tick={{ fill: '#64748b', fontSize: 11 }} tickFormatter={v => `${(v / 1e9).toFixed(1)}B`} />
             <Tooltip {...TOOLTIP_STYLE} formatter={v => [formatIDRCompact(v), 'Cost']} />
-            <Line type="monotone" dataKey="cost" stroke="#2dd4bf" strokeWidth={2} dot={false} name="Cost" />
+            <Line type="monotone" dataKey="cost" stroke="#0f766e" strokeWidth={2} dot={false} name="Cost" />
           </LineChart>
         </ChartCard>
 
         <ChartCard title="Shipments by Carrier">
           <BarChart data={byCarrier} layout="vertical" margin={{ top: 4, right: 8, left: 80, bottom: 4 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-            <XAxis type="number" tick={{ fill: '#8b949e', fontSize: 11 }} />
-            <YAxis type="category" dataKey="carrier" tick={{ fill: '#8b949e', fontSize: 10 }} width={80} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(71,85,105,0.2)" />
+            <XAxis type="number" tick={{ fill: '#475569', fontSize: 11 }} />
+            <YAxis type="category" dataKey="carrier" tick={{ fill: '#475569', fontSize: 10 }} width={80} />
             <Tooltip {...TOOLTIP_STYLE} />
-            <Bar dataKey="count" fill="#a371f7" radius={[0, 3, 3, 0]} name="Shipments" />
+            <Bar dataKey="count" fill="#6366f1" radius={[0, 6, 6, 0]} name="Shipments" />
           </BarChart>
         </ChartCard>
       </div>
@@ -130,11 +130,11 @@ export default function Dashboard() {
         <div className="card-title">Top Routes by Volume</div>
         <ChartCard height={200}>
           <BarChart data={topRoutes} margin={{ top: 4, right: 8, left: 0, bottom: 50 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-            <XAxis dataKey="route" tick={{ fill: '#8b949e', fontSize: 10 }} angle={-35} textAnchor="end" />
-            <YAxis tick={{ fill: '#8b949e', fontSize: 11 }} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(71,85,105,0.2)" />
+            <XAxis dataKey="route" tick={{ fill: '#475569', fontSize: 10 }} angle={-35} textAnchor="end" />
+            <YAxis tick={{ fill: '#475569', fontSize: 11 }} />
             <Tooltip {...TOOLTIP_STYLE} />
-            <Bar dataKey="count" fill="#3fb950" radius={[3, 3, 0, 0]} name="Shipments" />
+            <Bar dataKey="count" fill="#059669" radius={[6, 6, 0, 0]} name="Shipments" />
           </BarChart>
         </ChartCard>
       </div>
